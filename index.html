@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to 2027</title>
+    <style>
+        @font-face {
+            font-family: 'PingFang SC';
+            src: url('./PingFangSC-Medium.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'PingFang SC', Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin: 0;
+        }
+        .countdown {
+            font-size: 2rem;
+            color: #333;
+            margin: 10px 0;
+        }
+        .countdown span {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <p class="subtitle">距离2027年高考还有</p>
+    <h1 id="countdown" class="countdown"></h1>
+
+    <script>
+        function displayCountdown() {
+            const targetDate = new Date('2027-06-07T09:00:00');
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeDifference = targetDate - now;
+
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+                const seconds = Math.floor((timeDifference / 1000) % 60);
+
+                document.getElementById('countdown').innerHTML = 
+                    `<span>${days}</span>天 <span>${hours}</span>小时 <span>${minutes}</span>分钟 <span>${seconds}</span>秒。`;
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        displayCountdown();
+    </script>
+</body>
+</html>
